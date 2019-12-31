@@ -1,7 +1,23 @@
 const http = require('http');
 const xml_parser = require('./_xml_parser');
 
-http.get('http://export.arxiv.org/api/query?search_query=all:electron&start=0&max_results=5', (res) => {
+const options = {
+  search_query: "au:Fredrikson",
+  start: "0",
+  sortBy: "submittedDate",
+  max_results: "1"
+}
+
+let query = '';
+for (key in options) {
+  let tmp = key + '=' + options[key] + '&';
+  query += tmp;
+}
+
+const url = 'http://export.arxiv.org/api/query?' + query;
+
+
+  http.get(url, (res) => {
   const { statusCode } = res;
   console.log(statusCode);
 
