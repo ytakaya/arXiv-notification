@@ -20,6 +20,6 @@
     "@slack/web-api": "^5.6.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "xml-parse": "^0.4.0"
+    "xml2js": "^0.4.23"
   }
 }
