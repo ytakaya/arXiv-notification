@@ -2,7 +2,8 @@
   "options":{
     "option1": {
       "search_query": {
-        "au": "Matt Fredrikson"
+        "au": "Matt Fredrikson",
+        "ti": "privacy"
       },
       "start": "0",
       "sortBy": "submittedDate",
