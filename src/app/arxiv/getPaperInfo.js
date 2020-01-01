@@ -1,22 +1,10 @@
 const http = require('http');
-const xml_parser = require('./_xml_parser');
 const config = require('config');
+const xml_parser = require('./_xml_parser');
+const options2url = require('./_options2url');
 
 const options = config.get('options').option1;
-
-let query = '';
-for (key in options) {
-  if (key=='search_query') {
-    query += key + '='
-    for (c in options[key]) {
-      query += c + ':' + encodeURIComponent('"' + options[key][c] + '"') + '&';
-    }
-  } else {
-    query += key + '=' + options[key] + '&';
-  }
-}
-
-const url = 'http://export.arxiv.org/api/query?' + query;
+const url = options2url(options);
 console.log(url);
 
 
