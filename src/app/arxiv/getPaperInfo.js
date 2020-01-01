@@ -1,14 +1,8 @@
 const http = require('http');
 const xml_parser = require('./_xml_parser');
+const config = require('config');
 
-const options = {
-  search_query: {
-    au: 'Matt Fredrikson'
-  },
-  start: '0',
-  sortBy: 'submittedDate',
-  max_results: '1'
-}
+const options = config.get('options').option1;
 
 let query = '';
 for (key in options) {
