@@ -7,8 +7,27 @@ const options = config.get('options').option1;
 const url = options2url(options);
 console.log(url);
 
+function make_notification(data_list) {
+  for (let i=0; i < data_list.length; i++) {
+    data = data_list[i];
+    console.log('title: ' + data.title);
+    const authors = (authors_list) => {
+      let authors = '';
+      for (let j=0; j < authors_list.length; j++) {
+        authors += authors_list[i].name;
+        if (j != authors_list.length - 1) {
+          authors += ', ';
+        }
+      }
+      return authors;
+    };
+    console.log('authors: ' + authors(data.author));
+    console.log('url: ' + data.id);
+  }
+};
 
-  http.get(url, (res) => {
+
+http.get(url, (res) => {
   const { statusCode } = res;
   console.log(statusCode);
 
@@ -16,6 +35,7 @@ console.log(url);
   res.on('data', (chunk) => { rawData += chunk; });
   
   res.on('end', (res) => {
-    console.log(xml_parser(rawData));
+    // console.log(xml_parser(rawData));
+    make_notification(xml_parser(rawData));
   })
 });

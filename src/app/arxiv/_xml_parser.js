@@ -1,10 +1,11 @@
 const parseString = require('xml2js').parseString;
 
 function xml_parser(rawData) {
+  let ret;
   parseString(rawData, function (err, result) {
-    console.log(result.feed.entry);
+    ret = result.feed.entry;
   });
-  return parseString;
+  return ret;
 }
 
 exports = module.exports = xml_parser;
