@@ -4,7 +4,7 @@ const url = process.env.MONGO_URL;
 
 sample_data = {
   authors: 'takaya',
-  title: 'sample_data2'
+  title: 'sample_data3'
 }
 
 function insert_paper_info(data, db_url) {
