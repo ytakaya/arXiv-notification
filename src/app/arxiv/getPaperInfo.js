@@ -19,8 +19,9 @@ const get_paper_info = async () => {
       res.on('data', (chunk) => { rawData += chunk; });
       
       res.on('end', (res) => {
-        const text = make_notification(xml_parser(rawData));
-        resolve(text);
+        make_notification(xml_parser(rawData)).then(text => {
+          resolve(text);
+        })
       })
     });
   });

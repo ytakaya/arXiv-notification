@@ -9,12 +9,14 @@ const web = new WebClient(token);
 
 function slack_notify() {
   get_paper_info().then(text => {
-    (async () => {
-      const result = await web.chat.postMessage({
-        text: text,
-        channel: channel,
-      });
-    })();
+    if (text != '') {
+      (async () => {
+        const result = await web.chat.postMessage({
+          text: text,
+          channel: channel,
+        });
+      })();
+    }
   })
 };
 
