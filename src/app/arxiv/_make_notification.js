@@ -4,7 +4,7 @@ const db_url = process.env.MONGO_URL;
 
 const make_notification = async(paper_list) => {
   return await new Promise(resolve => {
-    let result = '';
+    let result = [];
 
     (async () => {
       for (let i=0; i < paper_list.length; i++) {
@@ -23,12 +23,13 @@ const make_notification = async(paper_list) => {
     
         await insert_paper_info(data, db_url).then(inserted => {
           if (inserted) {
-            result += `title:  ${data.title}\n`;
-            result += `authors: ${_authors(data.author)}\n`;
-            result += `url: ${data.id}\n`;
-            if (i != paper_list.length - 1) {
-              result += '\n ---------- \n';
-            }
+            result = result.concat([
+              {
+                title: String(data.title).replace("\n", ""),
+                authors: _authors(data.author),
+                url: String(data.id)
+              }
+            ]);
           }
         })
       }
